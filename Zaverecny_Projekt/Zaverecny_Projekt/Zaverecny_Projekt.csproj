@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{38ABF801-3FFE-4CBD-93F5-20AA226D5F44}</ProjectGuid>
+    <ProjectGuid>{C68E8A5F-F1AF-4726-9AAB-E4609F631C43}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Zaverecny_Projekt</RootNamespace>
     <AssemblyName>Zaverecny_Projekt</AssemblyName>
@@ -43,9 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\ZaverecnyProjekt\Czechitas_C_Sharp_2\Class1.cs">
-      <Link>Class1.cs</Link>
-    </Compile>
+    <Compile Include="Class1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

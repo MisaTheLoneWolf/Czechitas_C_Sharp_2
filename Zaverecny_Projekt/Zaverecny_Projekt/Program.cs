@@ -18,38 +18,52 @@ namespace Zaverecny_Projekt
 
             List<Hrac> hraci = new List<Hrac>() { Brankar1, Brankar2, Brankar3 };
 
+
             //- vypsat hrace podle teamu
-
-
-
-            //- vypsat hrace podle pozice   
-
-            string vybranaPozice = "brankar";
-
-           List<Hrac> vybraniHraci = new List<Hrac>();
-
+            //- vypsat hrace podle pozice  
+            List<Hrac> vyberHrace(string typKriteria, string kriterium)
             {
+
+                List<Hrac> vybraniHraci = new List<Hrac>();
+
+
 
                 for (int i = 0; i < hraci.Count; i++)
                 {
 
-                    if (hraci[i].Pozice == vybranaPozice)
+                    if (typKriteria == "pozice" && hraci[i].Pozice == kriterium)
                     {
-
                         vybraniHraci.Add(hraci[i]);
-
-
                     }
-
+                    else if (typKriteria == "team" && hraci[i].Team == kriterium)
+                    {
+                        vybraniHraci.Add(hraci[i]);
+                    }
+                    else if (typKriteria != "pozice" && typKriteria != "team")
+                    {
+                        Console.WriteLine("nebolo zadane spravne kriterium");
+                        break;
+                    }
 
                 }
 
-
+                return vybraniHraci;
 
 
             }
 
+            // list vsetkych brankarov Meno Prijmeni, vek, team
 
+
+            List<Hrac> vyber = vyberHrace("pozice", "brankar");
+            foreach (Hrac hrac in vyber)
+            {
+                Console.WriteLine($"Hrac: " + hrac.Jmeno + " " + hrac.Prijmeni + ", " + hrac.Vek + ", " + hrac.Team);
+
+
+            }
+
+            Console.ReadLine();
 
 
 

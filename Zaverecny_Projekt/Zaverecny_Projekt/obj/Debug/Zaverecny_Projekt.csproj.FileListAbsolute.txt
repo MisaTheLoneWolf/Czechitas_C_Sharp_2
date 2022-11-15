@@ -1,8 +1,8 @@
-C:\Users\mkrkosova\Desktop\C# skoleni\Zaverecny_Projekt\Zaverecny_Projekt\bin\Debug\Zaverecny_Projekt.exe.config
-C:\Users\mkrkosova\Desktop\C# skoleni\Zaverecny_Projekt\Zaverecny_Projekt\bin\Debug\Zaverecny_Projekt.exe
-C:\Users\mkrkosova\Desktop\C# skoleni\Zaverecny_Projekt\Zaverecny_Projekt\bin\Debug\Zaverecny_Projekt.pdb
-C:\Users\mkrkosova\Desktop\C# skoleni\Zaverecny_Projekt\Zaverecny_Projekt\obj\Debug\Zaverecny_Projekt.csproj.AssemblyReference.cache
-C:\Users\mkrkosova\Desktop\C# skoleni\Zaverecny_Projekt\Zaverecny_Projekt\obj\Debug\Zaverecny_Projekt.csproj.SuggestedBindingRedirects.cache
-C:\Users\mkrkosova\Desktop\C# skoleni\Zaverecny_Projekt\Zaverecny_Projekt\obj\Debug\Zaverecny_Projekt.csproj.CoreCompileInputs.cache
-C:\Users\mkrkosova\Desktop\C# skoleni\Zaverecny_Projekt\Zaverecny_Projekt\obj\Debug\Zaverecny_Projekt.exe
-C:\Users\mkrkosova\Desktop\C# skoleni\Zaverecny_Projekt\Zaverecny_Projekt\obj\Debug\Zaverecny_Projekt.pdb
+C:\Users\mkrkosova\Desktop\C# skoleni\Projekt\Czechitas_C_Sharp_2\Zaverecny_Projekt\Zaverecny_Projekt\bin\Debug\Zaverecny_Projekt.exe.config
+C:\Users\mkrkosova\Desktop\C# skoleni\Projekt\Czechitas_C_Sharp_2\Zaverecny_Projekt\Zaverecny_Projekt\bin\Debug\Zaverecny_Projekt.exe
+C:\Users\mkrkosova\Desktop\C# skoleni\Projekt\Czechitas_C_Sharp_2\Zaverecny_Projekt\Zaverecny_Projekt\bin\Debug\Zaverecny_Projekt.pdb
+C:\Users\mkrkosova\Desktop\C# skoleni\Projekt\Czechitas_C_Sharp_2\Zaverecny_Projekt\Zaverecny_Projekt\obj\Debug\Zaverecny_Projekt.csproj.AssemblyReference.cache
+C:\Users\mkrkosova\Desktop\C# skoleni\Projekt\Czechitas_C_Sharp_2\Zaverecny_Projekt\Zaverecny_Projekt\obj\Debug\Zaverecny_Projekt.csproj.SuggestedBindingRedirects.cache
+C:\Users\mkrkosova\Desktop\C# skoleni\Projekt\Czechitas_C_Sharp_2\Zaverecny_Projekt\Zaverecny_Projekt\obj\Debug\Zaverecny_Projekt.csproj.CoreCompileInputs.cache
+C:\Users\mkrkosova\Desktop\C# skoleni\Projekt\Czechitas_C_Sharp_2\Zaverecny_Projekt\Zaverecny_Projekt\obj\Debug\Zaverecny_Projekt.exe
+C:\Users\mkrkosova\Desktop\C# skoleni\Projekt\Czechitas_C_Sharp_2\Zaverecny_Projekt\Zaverecny_Projekt\obj\Debug\Zaverecny_Projekt.pdb
