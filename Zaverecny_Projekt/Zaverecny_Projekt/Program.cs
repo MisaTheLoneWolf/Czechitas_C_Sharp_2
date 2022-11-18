@@ -15,169 +15,105 @@ namespace Zaverecny_Projekt
         static void Main(string[] args)
         {
             // Initioal Load ze souboru pokud jestvuje
-
             // TEAMY:
+            List<Team> vsechnyJestvujiciTeamy = InitialLoadTeam();
 
-            var currentDirectory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-            string projectDirectory = currentDirectory.Parent.Parent.Parent.FullName;
+            // HRACI:
+            List<Hrac> vsechniJestvujiciHraci = InitialLoadHrac();
 
-            string cestaKSouboru = Path.Combine(projectDirectory,"Teamy","Teamy.xml");
 
-            if (!Directory.Exists(Path.GetDirectoryName(cestaKSouboru)))
+            // Manualne zadej hrace
+            bool promennaProVystupZCyklu = true;
+
+            while (promennaProVystupZCyklu)
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(cestaKSouboru));
+                Console.WriteLine("Pokud chcete zadat dalšího hráče, stisknete a");
+                if (Console.ReadLine() == "a")
+                {
+                    vsechniJestvujiciHraci.Add(zadejHrace());
+                }
+                else promennaProVystupZCyklu = false;
             }
 
-            Team teamA = new Team("Amateri", "As", "5.liga");
-            Team teamB = new Team("Borci", "Brno", "5.liga");
+            // Seznam hracu dle podminek
+            promennaProVystupZCyklu = true;
 
-
-
-            XmlSerializer serializer = new XmlSerializer(typeof(Team));
-
-            using (StreamWriter writer = new StreamWriter(cestaKSouboru))
+            while (promennaProVystupZCyklu)
             {
-                serializer.Serialize(writer, teamA);
-                serializer.Serialize(writer, teamB);
+                Console.WriteLine("Pokud chcete vyhledat seznam hracu, stisknete a");
+                if (Console.ReadLine() == "a")
+                {
+                    VyhledejHrace();
+                }
+                else promennaProVystupZCyklu = false;
             }
 
 
 
-
-
-
-
-
-            // Manualne Zadat noveho Hrace
-            List<Hrac> hraci = new List<Hrac>();
-
-
-            Console.WriteLine("Zadajte noveho hraca jmeno");
-            Console.WriteLine("Zadajte krstni jmeno: ");
-            string jmenoHrace = kontrolovanyString(Console.ReadLine());
-
-
-            Console.WriteLine("Zadajte prijmeni: ");
-            string prijmeniHrace = kontrolovanyString(Console.ReadLine());
-
-            Console.WriteLine("Zadajte datum narozeni ve formatu YYYYMMDD: ");
-            string datumHrace = kontrolovanyDatum(Console.ReadLine());
-
-
-            Console.WriteLine("Zadajte team: ");
-            string teamHrace = kontrolovanyString(Console.ReadLine());
-
-            Console.WriteLine("Zadajte pozici: ");
-            string poziceHrace = KontrolaExistencePozice(kontrolovanyString(Console.ReadLine()));
-
-
-            zadejNovehoHrace(jmenoHrace, prijmeniHrace, DateTime.Parse(datumHrace, CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None), teamHrace, poziceHrace);
-
-            
-           
-            Hrac Brankar2 = new Hrac("Jan", "Kamen", new DateTime(2001, 10, 10), "Becka", "brankar");
-            Hrac Brankar3 = new Hrac("Petr", "Sutr", new DateTime(2002, 12, 12), "Cecka", "brankar");
-            hraci.Add(Brankar2);
-            hraci.Add(Brankar3);
-
-
-            List<Hrac> vyber = vyberHrace("pozice", "brankar");
-            foreach (Hrac hrac in vyber)
-            {
-                Console.WriteLine($"Hrac: " + hrac.Jmeno + " " + hrac.Prijmeni + ", " + hrac.Vek + ", " + hrac.Team);
-
-
-            }
 
             Console.ReadLine();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-            //- zadat noveho hrace
-            //Hrac Brankar1 = new Hrac("Tomas", "Skala", new DateTime(2000, 1, 1), "Acka", "neco");
-   
-
-
-
-
-
-
-
-
-
-            //List<Hrac> hraci = new List<Hrac>() { Brankar1, Brankar2, Brankar3 };
-
-
-            //- vypsat hrace podle teamu
-            //- vypsat hrace podle pozice  
-            List<Hrac> vyberHrace(string typKriteria, string kriterium)
+            //METODY
+            void VyhledejHrace()
             {
+                // Vyber hrace podle podminky
+                Console.WriteLine("Seznam Hracu - vyberte si podminku:");
+                Console.WriteLine("1 - vsichni hraci");
+                Console.WriteLine("2 - hraci podle prijmeni");
+                Console.WriteLine("3 - hraci podle tymu");
+                Console.WriteLine("4 - hraci podle pozice");
 
+                int podminka = kontrolovanyIntProFilter(Console.ReadLine());
+                string kriter = "";
+                if (podminka != 1)
+                {
+                    Console.WriteLine("Zadajte prosim vyhledavaci klic:");
+                    if (podminka == 3)
+                        kriter = kontrolovanyString(KontrolaExistenceTeamu(vsechnyJestvujiciTeamy, Console.ReadLine()));
+                    else if (podminka == 4)
+                        kriter = KontrolaExistencePozice(kontrolovanyString(Console.ReadLine()));
+                    else 
+                        kriter = kontrolovanyString(Console.ReadLine());
+                }
+
+                foreach (Hrac hrac in vyberHrace(podminka, kriter))
+                {
+                    Console.WriteLine($"Hrac: " + hrac.Jmeno + " " + hrac.Prijmeni + ", " + hrac.DatumNarozeni.Day +"."+ hrac.DatumNarozeni.Month + "." + hrac.DatumNarozeni.Year + ", " + hrac.Team);
+                }
+            }
+
+            List <Hrac> vyberHrace(int typKriteria, string kriterium)
+            {
                 List<Hrac> vybraniHraci = new List<Hrac>();
 
-
-
-                for (int i = 0; i < hraci.Count; i++)
+                for (int i = 0; i < vsechniJestvujiciHraci.Count; i++)
                 {
 
-                    if (typKriteria == "pozice" && hraci[i].Pozice == kriterium)
+                    if (typKriteria == 4) // pozice
                     {
-                        vybraniHraci.Add(hraci[i]);
+                        if (vsechniJestvujiciHraci[i].Pozice == kriterium)
+                        vybraniHraci.Add(vsechniJestvujiciHraci[i]);
                     }
-                    else if (typKriteria == "team" && hraci[i].Team == kriterium)
+                    else if (typKriteria == 3 ) // team
                     {
-                        vybraniHraci.Add(hraci[i]);
+                        if (vsechniJestvujiciHraci[i].Team == kriterium)
+                            vybraniHraci.Add(vsechniJestvujiciHraci[i]);
                     }
-                    else if (typKriteria != "pozice" && typKriteria != "team")
+                    else if (typKriteria == 2 ) // Prijmeni
                     {
-                        Console.WriteLine("nebolo zadane spravne kriterium");
-                        break;
+                        if (vsechniJestvujiciHraci[i].Prijmeni == kriterium)
+                            vybraniHraci.Add(vsechniJestvujiciHraci[i]);
                     }
-
+                    else if (typKriteria == 1) // vsichni hraci
+                    {
+                        vybraniHraci.Add(vsechniJestvujiciHraci[i]);
+                    }
                 }
 
                 return vybraniHraci;
-
-
             }
 
-            // list vsetkych brankarov Meno Prijmeni, vek, team
-
-
-            //List<Hrac> vyber = vyberHrace("pozice", "brankar");
-            //foreach (Hrac hrac in vyber)
-            //{
-            //    Console.WriteLine($"Hrac: " + hrac.Jmeno + " " + hrac.Prijmeni + ", " + hrac.Vek + ", " + hrac.Team);
-
-
-            //}
-
-            //Console.ReadLine();
-
-
-
-            //- vyhledat hrace
-
-
-
-            // METODY
             string kontrolovanyString(string vstupnyText)
             {
                 while (string.IsNullOrEmpty(vstupnyText))
@@ -185,7 +121,21 @@ namespace Zaverecny_Projekt
                     Console.WriteLine("Nezadali jse spravne vstup, prosim opakujte s vyplnenou hodnotou:");
                     vstupnyText = Console.ReadLine();
                 }
-                return vstupnyText;
+                return char.ToUpper(vstupnyText[0]) + vstupnyText.Substring(1); // prvni znak velke pismeno
+
+            }
+
+            int kontrolovanyIntProFilter(string vstupnyIntjakString)
+            {
+
+                int vstupnyInt = 0;
+                while (!int.TryParse(vstupnyIntjakString,out vstupnyInt) || (vstupnyInt < 1 && vstupnyInt > 4))
+                {
+                    Console.WriteLine("Nezadali jse spravne vstup, prosim opakujte s vyplnenou hodnotou 1-4:");
+                    vstupnyIntjakString = Console.ReadLine();
+                }
+                return vstupnyInt;
+
             }
 
 
@@ -242,7 +192,7 @@ namespace Zaverecny_Projekt
 
             string KontrolaExistencePozice(string pozice)
             {
-                List<string> vsechnyPozice = new List<string> { "brankar", "obrance", "zaloznik", "utocnik" };
+                List<string> vsechnyPozice = new List<string> { "brankar", "obrance", "utocnik" }; // hrame maly futbal takze bez zalohy
 
                 string vyslednaPozice = "";
                 foreach (string p in vsechnyPozice)
@@ -260,12 +210,123 @@ namespace Zaverecny_Projekt
             }
 
 
-            void zadejNovehoHrace(string jmeno, string prijmeni, DateTime datumNarozeni, string team, string pozice)
+            string cesta(string coLoadujem, string nazevSouboru)
+            {
+                var currentDirectory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+                string projectDirectory = currentDirectory.Parent.Parent.Parent.FullName;
+                string cestaKSouboru = Path.Combine(projectDirectory, coLoadujem, nazevSouboru);
+
+
+                if (!Directory.Exists(Path.GetDirectoryName(cestaKSouboru)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(cestaKSouboru));
+                }
+
+                return cestaKSouboru;
+
+            }
+
+
+
+            List<Team> InitialLoadTeam() 
+            {
+                string cestaKSouboru = cesta("Teamy", "Teamy.xml");
+                XmlSerializer serializerTeamy = new XmlSerializer(typeof(List<Team>));
+
+                using (StreamReader ctecka = new StreamReader(cestaKSouboru))
+                {
+                    List<Team> nacteneTeamy = serializerTeamy.Deserialize(ctecka) as List<Team>;
+                    return nacteneTeamy;
+                }
+            }
+
+            List<Hrac> InitialLoadHrac()
+            {
+                string cestaKSouboru = cesta("Hraci", "Hraci.xml");
+                XmlSerializer serializerHraci = new XmlSerializer(typeof(List<Hrac>));
+
+                using (StreamReader ctecka = new StreamReader(cestaKSouboru))
+                {
+                    List<Hrac> nacteniHraci = serializerHraci.Deserialize(ctecka) as List<Hrac>;
+                    return nacteniHraci;
+                }
+            }
+
+            List<Zapas> InitialLoadZapas() // InitialLoad("Teamy", "Teamy.xml")
+            {
+                string cestaKSouboru = cesta("Zapasy", "Zapasy.xml");
+                XmlSerializer serializerZapasy = new XmlSerializer(typeof(List<Zapas>));
+
+                using (StreamReader ctecka = new StreamReader(cestaKSouboru))
+                {
+                    List<Zapas> nacteneZapasy = serializerZapasy.Deserialize(ctecka) as List<Zapas>;
+                    return nacteneZapasy;
+                }
+            }
+
+
+             int VypocitejVekRoky(DateTime datumNarozeni)
+            {
+                DateTime Dneska = DateTime.Today;
+
+
+                int DneskaJakInt = (Dneska.Year * 1000) + (Dneska.Month * 10) + (Dneska.Day);
+                int DatumNarozeniJakInt = (datumNarozeni.Year * 1000) + (datumNarozeni.Month * 10) + (datumNarozeni.Day);
+
+                return (DneskaJakInt - DatumNarozeniJakInt) / 1000; // INT sa postara o desetatine miesta :D
+            }
+
+
+            Hrac zadejHrace()
+            {
+                // Manualne Zadat noveho Hrace
+                List<Hrac> hraci = new List<Hrac>();
+
+
+                Console.WriteLine("Zadajte noveho hraca jmeno");
+                Console.WriteLine("Zadajte krstni jmeno: ");
+                string jmenoHrace = kontrolovanyString(Console.ReadLine());
+
+
+                Console.WriteLine("Zadajte prijmeni: ");
+                string prijmeniHrace = kontrolovanyString(Console.ReadLine());
+
+                Console.WriteLine("Zadajte datum narozeni ve formatu YYYYMMDD: ");
+                string datumHrace = kontrolovanyDatum(Console.ReadLine());
+
+
+                Console.WriteLine("Zadajte team: ");
+                string teamHrace =  kontrolovanyString(KontrolaExistenceTeamu(vsechnyJestvujiciTeamy,Console.ReadLine()));
+
+                Console.WriteLine("Zadajte pozici: ");
+                string poziceHrace = KontrolaExistencePozice(kontrolovanyString(Console.ReadLine()));
+
+                Hrac hrac1 = new Hrac(jmenoHrace, prijmeniHrace, DateTime.Parse(datumHrace, CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None), teamHrace, poziceHrace);
+                return hrac1;
+                
+            }
+
+
+            string KontrolaExistenceTeamu(List<Team> vsechnyTeamy, string team)
             {
 
-                Hrac hrac1 = new Hrac(jmeno, prijmeni, datumNarozeni, team, pozice);
-                hraci.Add(hrac1);
+                string vyslednyTeam = "";
+                foreach (Team p in vsechnyTeamy)
+                {
+                    if (p.Jmeno.Equals(team, StringComparison.OrdinalIgnoreCase))
+                    {
+                        vyslednyTeam = p.Jmeno;
+                    }
+                }
+
+                if (vyslednyTeam == "")
+                    Console.WriteLine("Byl zadán neexistující team");
+                return vyslednyTeam;
+
             }
+
         }
+
     }
 }
+
