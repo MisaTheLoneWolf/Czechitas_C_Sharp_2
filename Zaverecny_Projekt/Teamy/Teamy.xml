@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Team xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Jmeno>Amateri</Jmeno>
+  <Mesto>As</Mesto>
+  <Soutez>5.liga</Soutez>
+</Team>
+<Team xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Jmeno>Borci</Jmeno>
+  <Mesto>Brno</Mesto>
+  <Soutez>5.liga</Soutez>
+</Team>
+<Team xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Jmeno>Copita</Jmeno>
+	<Mesto>Cvikov</Mesto>
+	<Soutez>5.liga</Soutez>
+</Team>
+<Team xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Jmeno>Dolamanci</Jmeno>
+	<Mesto>Doksi</Mesto>
+	<Soutez>5.liga</Soutez>
+</Team>
+<Team xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Jmeno>Excelenti</Jmeno>
+	<Mesto>Ejpovice</Mesto>
+	<Soutez>5.liga</Soutez>
+</Team>
+<Team xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Jmeno>Frajeri</Jmeno>
+	<Mesto>Fulnek</Mesto>
+	<Soutez>5.liga</Soutez>
+</Team>
