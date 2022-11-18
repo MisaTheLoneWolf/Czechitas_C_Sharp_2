@@ -35,12 +35,13 @@ namespace Zaverecny_Projekt
         {
             Jmeno = jmeno;
             Prijmeni = prijmeni;
-            Vek = VypocitejVekRoky(datumNarozeni);
+            //Vek = VypocitejVekRoky(datumNarozeni);
+            DatumNarozeni = datumNarozeni;
             Team = team;
         }
 
 
-        public int VypocitejVekRoky(DateTime datumNarozeni)
+        public static int VypocitejVekRoky(DateTime datumNarozeni)
         {
             DateTime Dneska = DateTime.Today;
 
@@ -58,24 +59,15 @@ namespace Zaverecny_Projekt
         public string Pozice { get; private set; }
 
         public int PocetGolu { get; private set; }
-        public int PocetOdehranychMinut { get; private set; }
+        // public int PocetOdehranychMinut { get; private set; }
 
 
 
         public Hrac(string jmeno, string prijmeni, DateTime datumNarozeni, string team, string pozice, int pocetGolu = 0, int pocetOdehranychMinut = 0) : base(jmeno, prijmeni, datumNarozeni, team)
         {
-
-            Pozice = KontrolaExistencePozice();
-
+            Pozice = pozice;
         }
 
-
-        public string KontrolaExistencePozice()
-        {
-            string[] vsechnyPozice = new string[] { "brankar", "obrance", "zaloznik", "utocnik" };
-
-            return "brankar";  // dodelat kontrolu
-        }
 
     }
 
@@ -91,12 +83,25 @@ namespace Zaverecny_Projekt
     }
 
 
-    internal class Team
+    public class Team
     {
+        public string Jmeno;
+
+        public string Mesto;
+
+        public string Soutez ;
 
 
 
+        public Team(string jmeno, string mesto, string soutez)
+        {
+            Jmeno = jmeno;
+            Mesto = mesto;
+            Soutez = soutez;
+        }
 
+
+        public Team() { }
     }
 
 
