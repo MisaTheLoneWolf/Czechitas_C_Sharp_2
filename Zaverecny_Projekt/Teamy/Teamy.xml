@@ -4,36 +4,42 @@
     <Jmeno>Amateri</Jmeno>
     <Mesto>As</Mesto>
     <Soutez>5.liga</Soutez>
-	<PocetBodu>0</PocetBodu>
+    <PocetOdohratychZapasov>0</PocetOdohratychZapasov>
+    <PocetBodu>3</PocetBodu>
   </Team>
   <Team>
     <Jmeno>Borci</Jmeno>
     <Mesto>Brno</Mesto>
     <Soutez>5.liga</Soutez>
-	<PocetBodu>0</PocetBodu>
+    <PocetOdohratychZapasov>0</PocetOdohratychZapasov>
+    <PocetBodu>0</PocetBodu>
   </Team>
-    <Team>
-	<Jmeno>Copita</Jmeno>
-	<Mesto>Cvikov</Mesto>
-	<Soutez>5.liga</Soutez>
-	<PocetBodu>0</PocetBodu>
+  <Team>
+    <Jmeno>Copita</Jmeno>
+    <Mesto>Cvikov</Mesto>
+    <Soutez>5.liga</Soutez>
+    <PocetOdohratychZapasov>0</PocetOdohratychZapasov>
+    <PocetBodu>1</PocetBodu>
   </Team>
-    <Team>
-  	<Jmeno>Dolamanci</Jmeno>
-	<Mesto>Doksi</Mesto>
-	<Soutez>5.liga</Soutez>
-	<PocetBodu>0</PocetBodu>
+  <Team>
+    <Jmeno>Dolamanci</Jmeno>
+    <Mesto>Doksi</Mesto>
+    <Soutez>5.liga</Soutez>
+    <PocetOdohratychZapasov>0</PocetOdohratychZapasov>
+    <PocetBodu>1</PocetBodu>
   </Team>
-    <Team>
-	<Jmeno>Excelenti</Jmeno>
-	<Mesto>Ejpovice</Mesto>
-	<Soutez>5.liga</Soutez>
-	<PocetBodu>0</PocetBodu>
-</Team>
-    <Team>
-	<Jmeno>Frajeri</Jmeno>
-	<Mesto>Fulnek</Mesto>
-	<Soutez>5.liga</Soutez>
-	<PocetBodu>0</PocetBodu>
+  <Team>
+    <Jmeno>Excelenti</Jmeno>
+    <Mesto>Ejpovice</Mesto>
+    <Soutez>5.liga</Soutez>
+    <PocetOdohratychZapasov>0</PocetOdohratychZapasov>
+    <PocetBodu>3</PocetBodu>
+  </Team>
+  <Team>
+    <Jmeno>Frajeri</Jmeno>
+    <Mesto>Fulnek</Mesto>
+    <Soutez>5.liga</Soutez>
+    <PocetOdohratychZapasov>0</PocetOdohratychZapasov>
+    <PocetBodu>0</PocetBodu>
   </Team>
 </ArrayOfTeam>
