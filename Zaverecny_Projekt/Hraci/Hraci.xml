@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfHrac xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<Hrac><Jmeno>Kenneth</Jmeno><Prijmeni>Riley</Prijmeni><DatumNarozeni>1995-07-17T00:00:00</DatumNarozeni><Team>Amateri</Team><Pozice>Brankar</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Yasin</Jmeno><Prijmeni>Arnold</Prijmeni><DatumNarozeni>1991-07-15T00:00:00</DatumNarozeni><Team>Amateri</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Gerald</Jmeno><Prijmeni>Kennedy</Prijmeni><DatumNarozeni>1984-05-23T00:00:00</DatumNarozeni><Team>Amateri</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Ciaran</Jmeno><Prijmeni>Briggs</Prijmeni><DatumNarozeni>1998-11-02T00:00:00</DatumNarozeni><Team>Amateri</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Rocco</Jmeno><Prijmeni>Peters</Prijmeni><DatumNarozeni>1987-07-19T00:00:00</DatumNarozeni><Team>Amateri</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Glenn</Jmeno><Prijmeni>Henry</Prijmeni><DatumNarozeni>1985-12-18T00:00:00</DatumNarozeni><Team>Amateri</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Bailey</Jmeno><Prijmeni>Tyler</Prijmeni><DatumNarozeni>1983-05-23T00:00:00</DatumNarozeni><Team>Amateri</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Larry</Jmeno><Prijmeni>Faulkner</Prijmeni><DatumNarozeni>1994-07-29T00:00:00</DatumNarozeni><Team>Borci</Team><Pozice>Brankar</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Jesse</Jmeno><Prijmeni>Mcfarlane</Prijmeni><DatumNarozeni>1995-06-07T00:00:00</DatumNarozeni><Team>Borci</Team><Pozice>Brankar</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Connor</Jmeno><Prijmeni>Brady</Prijmeni><DatumNarozeni>1991-06-11T00:00:00</DatumNarozeni><Team>Borci</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Ollie</Jmeno><Prijmeni>Owens</Prijmeni><DatumNarozeni>1996-07-17T00:00:00</DatumNarozeni><Team>Borci</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Haris</Jmeno><Prijmeni>Carter</Prijmeni><DatumNarozeni>1992-07-15T00:00:00</DatumNarozeni><Team>Borci</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Khalid</Jmeno><Prijmeni>Dunn</Prijmeni><DatumNarozeni>1988-07-13T00:00:00</DatumNarozeni><Team>Borci</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Jonah</Jmeno><Prijmeni>Alvarez</Prijmeni><DatumNarozeni>1984-07-11T00:00:00</DatumNarozeni><Team>Borci</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Aron</Jmeno><Prijmeni>Romero</Prijmeni><DatumNarozeni>1980-07-09T00:00:00</DatumNarozeni><Team>Copita</Team><Pozice>Brankar</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Shawn</Jmeno><Prijmeni>Patterson</Prijmeni><DatumNarozeni>1976-07-07T00:00:00</DatumNarozeni><Team>Copita</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Melvin</Jmeno><Prijmeni>Daniel</Prijmeni><DatumNarozeni>2004-06-14T00:00:00</DatumNarozeni><Team>Copita</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Marco</Jmeno><Prijmeni>Barrett</Prijmeni><DatumNarozeni>2003-05-20T00:00:00</DatumNarozeni><Team>Copita</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Faith</Jmeno><Prijmeni>Castillo</Prijmeni><DatumNarozeni>2002-07-25T00:00:00</DatumNarozeni><Team>Copita</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Sean</Jmeno><Prijmeni>Wheeler</Prijmeni><DatumNarozeni>2004-05-27T00:00:00</DatumNarozeni><Team>Copita</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Lee</Jmeno><Prijmeni>Schwartz</Prijmeni><DatumNarozeni>1991-12-28T00:00:00</DatumNarozeni><Team>Copita</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Scott</Jmeno><Prijmeni>Mann</Prijmeni><DatumNarozeni>1996-07-16T00:00:00</DatumNarozeni><Team>Dolamanci</Team><Pozice>Brankar</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Jeremy </Jmeno><Prijmeni>Ward</Prijmeni><DatumNarozeni>1992-07-14T00:00:00</DatumNarozeni><Team>Dolamanci</Team><Pozice>Brankar</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Ajay</Jmeno><Prijmeni>Porter</Prijmeni><DatumNarozeni>1985-05-23T00:00:00</DatumNarozeni><Team>Dolamanci</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Lewis</Jmeno><Prijmeni>Rogers</Prijmeni><DatumNarozeni>1999-11-02T00:00:00</DatumNarozeni><Team>Dolamanci</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Herbert</Jmeno><Prijmeni>Frank</Prijmeni><DatumNarozeni>1988-07-18T00:00:00</DatumNarozeni><Team>Dolamanci</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Ismail</Jmeno><Prijmeni>Zimmerman</Prijmeni><DatumNarozeni>1986-12-18T00:00:00</DatumNarozeni><Team>Dolamanci</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Ray</Jmeno><Prijmeni>Cox</Prijmeni><DatumNarozeni>1984-05-22T00:00:00</DatumNarozeni><Team>Dolamanci</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Harrison</Jmeno><Prijmeni>Flores</Prijmeni><DatumNarozeni>1995-07-29T00:00:00</DatumNarozeni><Team>Excelenti</Team><Pozice>Brankar</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Aaron</Jmeno><Prijmeni>Barnett</Prijmeni><DatumNarozeni>1996-06-06T00:00:00</DatumNarozeni><Team>Excelenti</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Stefan</Jmeno><Prijmeni>Freeman</Prijmeni><DatumNarozeni>1992-06-10T00:00:00</DatumNarozeni><Team>Excelenti</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Hasan</Jmeno><Prijmeni>Allen</Prijmeni><DatumNarozeni>1997-07-17T00:00:00</DatumNarozeni><Team>Excelenti</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Owen</Jmeno><Prijmeni>Salazar</Prijmeni><DatumNarozeni>1993-07-15T00:00:00</DatumNarozeni><Team>Excelenti</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Tyler</Jmeno><Prijmeni>Pena</Prijmeni><DatumNarozeni>1989-07-13T00:00:00</DatumNarozeni><Team>Excelenti</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Nicholas</Jmeno><Prijmeni>Walsh</Prijmeni><DatumNarozeni>1985-07-11T00:00:00</DatumNarozeni><Team>Excelenti</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Alvin</Jmeno><Prijmeni>Guzman</Prijmeni><DatumNarozeni>1981-07-09T00:00:00</DatumNarozeni><Team>Frajeri</Team><Pozice>Brankar</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Antonio</Jmeno><Prijmeni>Fox</Prijmeni><DatumNarozeni>1977-07-07T00:00:00</DatumNarozeni><Team>Frajeri</Team><Pozice>Brankar</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Eden</Jmeno><Prijmeni>Howard</Prijmeni><DatumNarozeni>2005-06-14T00:00:00</DatumNarozeni><Team>Frajeri</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Andy</Jmeno><Prijmeni>Carson</Prijmeni><DatumNarozeni>2004-05-19T00:00:00</DatumNarozeni><Team>Frajeri</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Haider</Jmeno><Prijmeni>Gill</Prijmeni><DatumNarozeni>2003-07-25T00:00:00</DatumNarozeni><Team>Frajeri</Team><Pozice>Obranca</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Josh</Jmeno><Prijmeni>Thomson</Prijmeni><DatumNarozeni>2005-05-27T00:00:00</DatumNarozeni><Team>Frajeri</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+<Hrac><Jmeno>Mike</Jmeno><Prijmeni>Sony</Prijmeni><DatumNarozeni>1992-12-27T00:00:00</DatumNarozeni><Team>Frajeri</Team><Pozice>Utocnik</Pozice><PocetGolu>0</PocetGolu></Hrac>
+</ArrayOfHrac>

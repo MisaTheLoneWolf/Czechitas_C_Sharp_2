@@ -58,6 +58,12 @@ namespace Zaverecny_Projekt
         {
             PocetGolu = pocetGolu;
         }
+
+
+        public void ZapisGolStrelcovi()
+        {
+            PocetGolu += 1;
+        }
         public Hrac() { }
 
     }
@@ -71,15 +77,27 @@ namespace Zaverecny_Projekt
 
         public string Soutez ;
 
+        public int PocetOdohratychZapasov;
+
+        public int PocetBodu;
 
 
-        public Team(string jmeno, string mesto, string soutez)
+        public Team(string jmeno, string mesto, string soutez, int pocetOdohratychZapasov, int pocetBodu)
         {
             Jmeno = jmeno;
             Mesto = mesto;
             Soutez = soutez;
+            PocetOdohratychZapasov = pocetOdohratychZapasov;
+            PocetBodu = pocetBodu;
         }
 
+
+
+
+        public void ZapisBodyTeamu(int body)
+        {
+            PocetBodu += body;
+        }
 
         public Team() { }
     }

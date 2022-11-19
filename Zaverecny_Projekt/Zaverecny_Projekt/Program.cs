@@ -22,6 +22,9 @@ namespace Zaverecny_Projekt
             List<Hrac> vsechniJestvujiciHraci = InitialLoadHrac();
 
 
+
+
+
             // Manualne zadej hrace
             bool promennaProVystupZCyklu = true;
 
@@ -34,6 +37,20 @@ namespace Zaverecny_Projekt
                 }
                 else promennaProVystupZCyklu = false;
             }
+
+
+
+            // NEJVETSI VYZVA - ZADAT ZAPAS A PRIRADIT GOLY HRACIM Z TEAMU
+
+            promennaProVystupZCyklu = true;
+            Console.WriteLine("Pokud chcete zadat vysledek zapasu, stisknete a");
+            if (Console.ReadLine() == "a")
+            {
+                ZadejZapas();
+            }
+            else promennaProVystupZCyklu = false;
+
+
 
             // Seznam hracu dle podminek
             promennaProVystupZCyklu = true;
@@ -51,10 +68,114 @@ namespace Zaverecny_Projekt
 
 
 
+
+
             Console.ReadLine();
 
 
             //METODY
+
+            void ZadejZapas()
+            {
+
+                Console.WriteLine("Zadajte domaci team: ");
+                string domaciTeam = kontrolovanyString(KontrolaExistenceTeamu(vsechnyJestvujiciTeamy, Console.ReadLine()));
+                var domaciTeamDotaz = vsechnyJestvujiciTeamy.Where(r => r.Jmeno == domaciTeam);
+
+
+                Console.WriteLine("Zadajte hostujici team: ");
+                string hostujiciTeam = kontrolovanyString(KontrolaExistenceTeamu(vsechnyJestvujiciTeamy, Console.ReadLine()));
+                var hostujiciTeamDotaz = vsechnyJestvujiciTeamy.Where(r => r.Jmeno == hostujiciTeam);
+
+                var obaTeamyDotaz = vsechnyJestvujiciTeamy.Where(r => r.Jmeno == domaciTeam || r.Jmeno == hostujiciTeam);
+
+                while  (domaciTeam == hostujiciTeam)
+                {
+                    Console.WriteLine("Hosujici team nemuze byt stejny jak domaci team!");
+                    Console.WriteLine("Zadajte hostujici team: ");
+                    hostujiciTeam = kontrolovanyString(KontrolaExistenceTeamu(vsechnyJestvujiciTeamy, Console.ReadLine()));
+                }
+
+                Console.WriteLine("Zadajte pocet strelenych golu teamu " + domaciTeam + "(domaci): ");
+                int domaciTeamPocetGolu = kontrolovanyIntProPocetGolu(Console.ReadLine());
+
+                Console.WriteLine("Zadajte pocet strelenych golu teamu " + hostujiciTeam + "(hoste): ");
+                int hostujiciTeamPocetGolu = kontrolovanyIntProPocetGolu(Console.ReadLine());
+
+                // doplnit body teamom
+                if (domaciTeamPocetGolu == hostujiciTeamPocetGolu)
+                {
+                    foreach (Team t in obaTeamyDotaz)
+                    {
+                        t.ZapisBodyTeamu(1);
+                    }
+                }
+                else if (domaciTeamPocetGolu > hostujiciTeamPocetGolu)
+                {
+                    foreach (Team t in domaciTeamDotaz)
+                    {
+                        t.ZapisBodyTeamu(3);
+                    }
+                }
+                else if (domaciTeamPocetGolu < hostujiciTeamPocetGolu)
+                {
+                    foreach (Team t in hostujiciTeamDotaz)
+                    {
+                        t.ZapisBodyTeamu(3);
+                    }
+                }
+
+                List<Hrac> StrelciDomaci = new List<Hrac>(domaciTeamPocetGolu);  // strelcov moze byt len tolko kolko je golov
+                List<Hrac> StrelciHostia = new List<Hrac>(hostujiciTeamPocetGolu);
+
+                // supisky pre lahsoiu kontrolu prijmeni
+                Console.WriteLine(""); 
+                Console.WriteLine("Supiska teamu " + domaciTeam + "(domaci):");
+                foreach (var t in vsechniJestvujiciHraci.Where(r => r.Team == domaciTeam))
+                {
+                    Console.WriteLine(t.Jmeno + " " + t.Prijmeni);
+                }
+                Console.WriteLine("");
+                Console.WriteLine("Supiska teamu " + hostujiciTeam + "(hoste): ");
+                foreach (var t in vsechniJestvujiciHraci.Where(r => r.Team == hostujiciTeam))
+                {
+                    Console.WriteLine(t.Jmeno + " " + t.Prijmeni);
+                }
+
+                string prijmenihrace;
+
+                for (int i = 1; i <= domaciTeamPocetGolu; i++)
+                {
+                    Console.WriteLine("Zadatjte prijmeni strelce " + i + ". golu teamu " + domaciTeam + "(domaci):");
+                    prijmenihrace = kontrolovanyString(Console.ReadLine());
+                    while (vyberHrace(3, domaciTeam).Where(r => r.Prijmeni == prijmenihrace).ToList().Count()==0)
+                    {
+                        Console.WriteLine("Hrac s prijmenim " + prijmenihrace + " v teamu " + domaciTeam + "neexistuje!") ;
+                        Console.WriteLine("Zadatjte prijmeni strelce " + i + ". golu teamu " + domaciTeam + "(domaci):");
+                        prijmenihrace = kontrolovanyString(Console.ReadLine());
+                    }
+
+                    StrelciDomaci = vsechniJestvujiciHraci.Where(r => r.Prijmeni == prijmenihrace && r.Team == domaciTeam).ToList();
+                    StrelciDomaci[0].ZapisGolStrelcovi();
+                }
+
+                for (int i = 1; i <= hostujiciTeamPocetGolu; i++)
+                {
+                    Console.WriteLine("Zadatjte prijmeni strelce " + i + ". golu teamu " + hostujiciTeam + "(domaci):");
+                    prijmenihrace = kontrolovanyString(Console.ReadLine());
+                    while (vyberHrace(3, hostujiciTeam).Where(r => r.Prijmeni == prijmenihrace).ToList().Count() == 0)
+                    {
+                        Console.WriteLine("Hrac s prijmenim " + prijmenihrace + " v teamu " + hostujiciTeam + "neexistuje!");
+                        Console.WriteLine("Zadatjte prijmeni strelce " + i + ". golu teamu " + hostujiciTeam + "(domaci):");
+                        prijmenihrace = kontrolovanyString(Console.ReadLine());
+                    }
+
+                    StrelciHostia = vsechniJestvujiciHraci.Where(r => r.Prijmeni == prijmenihrace && r.Team == hostujiciTeam).ToList();
+                    StrelciHostia[0].ZapisGolStrelcovi();
+                }
+
+            }
+
             void VyhledejHrace()
             {
                 // Vyber hrace podle podminky
@@ -79,9 +200,12 @@ namespace Zaverecny_Projekt
 
                 foreach (Hrac hrac in vyberHrace(podminka, kriter))
                 {
-                    Console.WriteLine($"Hrac: " + hrac.Jmeno + " " + hrac.Prijmeni + ", " + hrac.DatumNarozeni.Day +"."+ hrac.DatumNarozeni.Month + "." + hrac.DatumNarozeni.Year + ", " + hrac.Team);
+                    Console.WriteLine($"Hrac: " + hrac.Jmeno + " " + hrac.Prijmeni + ", " + hrac.DatumNarozeni.Day +"."+ hrac.DatumNarozeni.Month + "." + hrac.DatumNarozeni.Year + ", " + hrac.Team + "Pocet strelenych golu: " + hrac.PocetGolu);
                 }
             }
+
+
+  
 
             List <Hrac> vyberHrace(int typKriteria, string kriterium)
             {
@@ -132,6 +256,19 @@ namespace Zaverecny_Projekt
                 while (!int.TryParse(vstupnyIntjakString,out vstupnyInt) || (vstupnyInt < 1 && vstupnyInt > 4))
                 {
                     Console.WriteLine("Nezadali jse spravne vstup, prosim opakujte s vyplnenou hodnotou 1-4:");
+                    vstupnyIntjakString = Console.ReadLine();
+                }
+                return vstupnyInt;
+
+            }
+
+            int kontrolovanyIntProPocetGolu(string vstupnyIntjakString)
+            {
+
+                int vstupnyInt = 0;
+                while (!int.TryParse(vstupnyIntjakString, out vstupnyInt) || (vstupnyInt < 0))
+                {
+                    Console.WriteLine("Nezadali jse spravne vstup pro pocet golu, prosim opakujte se spravne vyplnenou hodnotou:");
                     vstupnyIntjakString = Console.ReadLine();
                 }
                 return vstupnyInt;
@@ -305,7 +442,6 @@ namespace Zaverecny_Projekt
                 return hrac1;
                 
             }
-
 
             string KontrolaExistenceTeamu(List<Team> vsechnyTeamy, string team)
             {
