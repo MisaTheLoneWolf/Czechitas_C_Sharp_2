@@ -32,13 +32,13 @@ namespace Zaverecny_Projekt
                 int vybranaVolba = SeznamVsechMoznosti(zobrazPonukuPreUkladanie);
                 vybranaVolba = SpracovaniVybraneVolby(vybranaVolba);
 
-                if (vybranaVolba == 1 || vybranaVolba == 2)
+                if (vybranaVolba == 1 || vybranaVolba == 2 || vybranaVolba == 9)
                     zobrazPonukuPreUkladanie = true;
 
-                if (vybranaVolba == 9)
+                if (vybranaVolba == 10)
                     zobrazPonukuPreUkladanie = false;
 
-                if (vybranaVolba == 11)
+                if (vybranaVolba == 12)
                     break;
             }
 
@@ -48,23 +48,31 @@ namespace Zaverecny_Projekt
             {
                 int vyber;
                 Console.WriteLine("----------------------------------------------");
-                Console.WriteLine("Zde je seznam všech moznosti co muzete udelat:" + Environment.NewLine +
-                    "1. Manulne vlozit noveho hrace" + Environment.NewLine + "2. Manualne zadat zapas" + Environment.NewLine +
-                    "3. Vratit seznam vsech hracu " + Environment.NewLine + "4. Vratit seznam hracu podle vybraneho teamu" + Environment.NewLine +
-                    "5. Vratit seznam hracu podle vybrane pozice" + Environment.NewLine + "6. Vratit seznam hracu podle prijmeni" + Environment.NewLine +
-                    "7. Vratit poradi teamu dle bodu" + Environment.NewLine + "8. Vratit nejlepsiho strelce ligy");
+                Console.WriteLine("Zde je seznam všech moznosti co muzete udelat:");
+                // Zadavame = zelena
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("1.  Manulne vlozit noveho hrace" + Environment.NewLine + "2.  Manualne zadat zapas");
+                Console.ResetColor();
+                Console.WriteLine("3.  Vratit seznam vsech hracu " + Environment.NewLine + "4.  Vratit seznam hracu podle vybraneho teamu" + Environment.NewLine +
+                    "5.  Vratit seznam hracu podle vybrane pozice" + Environment.NewLine + "6.  Vratit seznam hracu podle prijmeni" + Environment.NewLine +
+                    "7.  Vratit poradi teamu dle bodu" + Environment.NewLine + "8.  Vratit nejlepsiho strelce ligy");
+                // Mazeme = cervena
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("9.  Vymazat hrace");
+                Console.ResetColor();
+                // Nemuzeme zavolat = seda
                 if (!jeCoUkladat) Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.WriteLine("9. Ulozit zmeny" + Environment.NewLine + "10. Ulozit zmeny a odejit");
+                Console.WriteLine("10. Ulozit zmeny" + Environment.NewLine + "11. Ulozit zmeny a odejit");
                 if (!jeCoUkladat) Console.ResetColor();
-                Console.WriteLine("11. Odejit bez ulozeni zmen" + Environment.NewLine);
+                Console.WriteLine("12. Odejit bez ulozeni zmen" + Environment.NewLine);
                 Console.Write("Vyberte si cislo pro Vas pozadavek: ");
 
-                vyber = kontrolovanyIntProFilter(Console.ReadLine(), 1, 19);
+                vyber = kontrolovanyIntProFilter(Console.ReadLine(), 1, 12);
 
-                while (!jeCoUkladat && (vyber == 9 || vyber == 10))
+                while (!jeCoUkladat && (vyber == 10 || vyber == 11))
                 {
                     Console.Write("Zatim neni co ulozit, prosim opakujte volbu: ");
-                    vyber = kontrolovanyIntProFilter(Console.ReadLine(), 1, 11);
+                    vyber = kontrolovanyIntProFilter(Console.ReadLine(), 1, 12);
                 }
                 return vyber;
             }
@@ -73,10 +81,14 @@ namespace Zaverecny_Projekt
             {
                 switch (volba)
                 { case 1: // Manulne vlozit noveho hrace
-                        vsechniJestvujiciHraci.Add(zadejHrace());
+                        Hrac pridanyHrac = zadejHrace();
+                        vsechniJestvujiciHraci.Add(pridanyHrac);
+                        Console.WriteLine("Hrac " + pridanyHrac.Jmeno + " " + pridanyHrac.Prijmeni +" byl zadan do teamu "+ pridanyHrac.Team + Environment.NewLine);
                         break;
                     case 2: //Manualne zadat zapas
-                        vsechnyJestvujicyZapasy.Add(ZadejZapas());
+                        Zapas pridanyZapas = ZadejZapas();
+                        vsechnyJestvujicyZapasy.Add(pridanyZapas);
+                        Console.WriteLine("Zapas mezi teamem  " + pridanyZapas.Domaci + " a teamem " + pridanyZapas.Hoste + " byl zadan" + Environment.NewLine);
                         break;
                     case 3: //Vratit seznam vsech hracu
                         VyhledejHrace(1);
@@ -96,18 +108,25 @@ namespace Zaverecny_Projekt
                     case 8: //Vratit nejlepsiho strelce ligy
                         NajlepsiStrelecLigy();
                         break;
-                    case 9: //Ulozit
-                        UlozHrace();
-                        UlozZapas();
-                        UlozTeam();
-                        break;
+                    case 9: //Vymazat hrace
+                        Hrac vymazanyHrac = vymazHrace();
+                        // vsechniJestvujiciHraci.Remove(vymazanyHrac) NEFUNGUJE ???
+                        int index = vsechniJestvujiciHraci.FindIndex(a => a.Prijmeni == vymazanyHrac.Prijmeni && a.Team == vymazanyHrac.Team);
+                        vsechniJestvujiciHraci.RemoveAt(index);
+                        Console.WriteLine("Hrac " + vymazanyHrac.Jmeno + " " + vymazanyHrac.Prijmeni + " byl vymazan z teamu " + vymazanyHrac.Team + Environment.NewLine);
+                        break;       
                     case 10: //Ulozit
                         UlozHrace();
                         UlozZapas();
                         UlozTeam();
-                        volba = 11;
                         break;
-                    case 11:
+                    case 11: //Ulozit
+                        UlozHrace();
+                        UlozZapas();
+                        UlozTeam();
+                        volba = 12;
+                        break;
+                    case 12:
                         break;
                 }
                 return volba;
@@ -327,6 +346,28 @@ namespace Zaverecny_Projekt
 
                 Hrac hrac1 = new Hrac(jmenoHrace, prijmeniHrace, DateTime.Parse(datumHrace, CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None), teamHrace, poziceHrace);
                 return hrac1;
+            }
+
+
+            Hrac vymazHrace()
+            {
+                // Manualne Zadat noveho Hrace
+   
+                Console.WriteLine("Zadajte team z ktereho chcete hrace vymazat");
+                string teamHrace = kontrolovanyString(KontrolaExistenceTeamu(vsechnyJestvujiciTeamy, Console.ReadLine()));
+                Console.WriteLine("");
+                Console.WriteLine("Supiska teamu " + teamHrace + ":");
+                foreach (var t in vsechniJestvujiciHraci.Where(r => r.Team == teamHrace))
+                {
+                    Console.WriteLine(t.Jmeno + " " + t.Prijmeni);
+                }
+
+                Console.WriteLine("Zadajte prijmeni hrac, ktereho chcete vymazat (z teamu " +teamHrace+ ")");
+                string prijmeniHrace = kontrolovanyString(KontrolaExistenceHrace(vsechniJestvujiciHraci, Console.ReadLine()));
+
+                var HracNaVymaz = vsechniJestvujiciHraci.Where(r => r.Prijmeni == prijmeniHrace && r.Team == teamHrace).ToList();
+                Hrac hracBudeVymazan = new Hrac(HracNaVymaz[0].Jmeno, HracNaVymaz[0].Prijmeni, HracNaVymaz[0].DatumNarozeni, HracNaVymaz[0].Team, HracNaVymaz[0].Pozice, HracNaVymaz[0].PocetGolu);
+                return hracBudeVymazan;
             }
 
             string kontrolovanyString(string vstupnyText)

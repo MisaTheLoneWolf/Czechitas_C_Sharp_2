@@ -14,7 +14,7 @@ namespace Zaverecny_Projekt
     //- zadat noveho hrace
     //- vypsat hrace podle teamu nebo podle pozice
     //- vyhledat hrace
-    //- smazet team(hraci bez teamu bud taky vymazani nebo budu "bez teamu")
+    //- smazet hrace
     //- zadat zapas - trida Zapas(sestava, vysledek, kto dal goly)
     //Kral strelcu za ligu, za teamy
 

@@ -336,12 +336,4 @@
     <Pozice>Utocnik</Pozice>
     <PocetGolu>0</PocetGolu>
   </Hrac>
-  <Hrac>
-    <Jmeno>Jan</Jmeno>
-    <Prijmeni>Palach</Prijmeni>
-    <DatumNarozeni>2000-10-10T00:00:00</DatumNarozeni>
-    <Team>Amateri</Team>
-    <Pozice>brankar</Pozice>
-    <PocetGolu>0</PocetGolu>
-  </Hrac>
 </ArrayOfHrac>
