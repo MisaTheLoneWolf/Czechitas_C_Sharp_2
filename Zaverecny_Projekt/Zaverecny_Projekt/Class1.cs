@@ -8,15 +8,15 @@ namespace Zaverecny_Projekt
 {
 
     //Databaze Zapasu futbalove ligy
-    //- kazdy hrac ma vlastnosti - jmeno, team, pozice, vek, pocet golu
-    //- kazdy team ma vlastnosti - mesto, ... TBD
+    //- kazdy hrac ma vlastnosti 
+    //- kazdy team ma vlastnosti 
     //Uzivatel muze :
     //- zadat noveho hrace
     //- vypsat hrace podle teamu nebo podle pozice
     //- vyhledat hrace
     //- smazet hrace
     //- zadat zapas - trida Zapas(sestava, vysledek, kto dal goly)
-    //Kral strelcu za ligu, za teamy
+    // Kral strelcu za ligu, za teamy
 
 
 

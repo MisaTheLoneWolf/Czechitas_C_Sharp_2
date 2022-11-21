@@ -51,7 +51,6 @@ namespace Zaverecny_Projekt
 
                     if (vybranaVolba == 12)
                     {
-                        Ukonci();
                         break;
                     }
                 }
@@ -65,9 +64,7 @@ namespace Zaverecny_Projekt
                 ZapisDoErrorLogu(coJduZapsatDoErrorLogu);
                 Console.WriteLine("Nastala chyba, detaily jsou ulozeny do ErrorLogu, ukoncim program");
                 Console.ReadLine();
-            }
-            finally //jeste radeji vse ulozim pokus uzivatel chce
-            {
+                
                 Console.WriteLine("Pokud Chcete ulozit Hrace, Zapasy a Teamy, stisknete a");
                 string vstupUzivatele = kontrolovanyString(Console.ReadLine());
 
@@ -77,8 +74,11 @@ namespace Zaverecny_Projekt
                     UlozZapas();
                     UlozTeam();
                     Console.WriteLine("Hraci, Zapasy a Teamy byli ulozeni. Koncim program.");
-                   
                 };
+            }
+            finally //jeste radeji vse ulozim pokus uzivatel chce
+            {
+
                 Ukonci();
             }
 
@@ -94,7 +94,7 @@ namespace Zaverecny_Projekt
                 Console.ResetColor();
                 Console.WriteLine("3.  Vratit seznam vsech hracu " + Environment.NewLine + "4.  Vratit seznam hracu podle vybraneho teamu" + Environment.NewLine +
                     "5.  Vratit seznam hracu podle vybrane pozice" + Environment.NewLine + "6.  Vratit seznam hracu podle prijmeni" + Environment.NewLine +
-                    "7.  Vratit poradi teamu dle bodu" + Environment.NewLine + "8.  Vratit nejlepsiho strelce ligy");
+                    "7.  Vratit poradi teamu dle bodu" + Environment.NewLine + "8.  Vratit nejlepsiho strelce ligy a jednotlivych teamu");
                 // Mazeme = cervena
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("9.  Vymazat hrace");
@@ -144,8 +144,8 @@ namespace Zaverecny_Projekt
                     case 7: //Vratit poradi teamu dle bodu
                         PoradiTeamuDleBodu();
                         break;
-                    case 8: //Vratit nejlepsiho strelce ligy
-                        NajlepsiStrelecLigy();
+                    case 8: //Vratit nejlepsiho strelce ligy + teamu
+                        NajlepsiStrelecLigyATeamu();
                         break;
                     case 9: //Vymazat hrace
                         Hrac vymazanyHrac = vymazHrace();
@@ -173,17 +173,6 @@ namespace Zaverecny_Projekt
                 }
                 return volba;
 
-            }
-
-            void NajlepsiStrelecLigy()
-            {
-                var maximumGolovDotaz = vsechniJestvujiciHraci.Max(x => x.PocetGolu);
-
-                var hraciSMaxGolamiDotaz = vsechniJestvujiciHraci.Where(x => x.PocetGolu == maximumGolovDotaz);
-                foreach (var t in hraciSMaxGolamiDotaz)
-                {
-                    Console.WriteLine($"Hrac: " + t.Jmeno + " " + t.Prijmeni + " Team: " + t.Team + " Pocet strelenych golu: " + t.PocetGolu);
-                }
             }
 
             Zapas ZadejZapas()
@@ -295,6 +284,70 @@ namespace Zaverecny_Projekt
                 return Zapas1;
             }
 
+            void PoradiTeamuDleBodu()
+            {
+                int poradi = 1;
+                Console.WriteLine("Poradi   Nazev teamu  Pocet bodu");
+                int pocetBoduMaxDotaz = vsechnyJestvujiciTeamy.Max(r => r.PocetBodu);
+
+
+                List<Team> zbyleTeamy = vsechnyJestvujiciTeamy;
+
+                int MinulyTeamPocetMaxDotaz = 0;
+
+                foreach (Team t in vsechnyJestvujiciTeamy.OrderByDescending(r => r.PocetBodu))
+                {
+                    if (MinulyTeamPocetMaxDotaz == pocetBoduMaxDotaz && poradi != 1)
+                    {
+                        Console.WriteLine($"         {t.Jmeno.PadRight(12)} {t.PocetBodu}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{poradi}.misto: {t.Jmeno.PadRight(12)} {t.PocetBodu}");
+                    }
+                    MinulyTeamPocetMaxDotaz = zbyleTeamy.Max(r => r.PocetBodu);
+                    zbyleTeamy = zbyleTeamy.Where(p => p.Jmeno != t.Jmeno).ToList();
+                    if (zbyleTeamy.Any()) // na prazdnom liste pada
+                    {
+                        pocetBoduMaxDotaz = zbyleTeamy.Max(r => r.PocetBodu);
+                    }
+
+                    poradi++;
+
+                }
+            }
+
+            void NajlepsiStrelecLigyATeamu()
+            {
+                // Celkovo najlepsi strelec
+                var maximumGolovDotaz = vsechniJestvujiciHraci.Max(x => x.PocetGolu);
+                var hraciSMaxGolamiDotaz = vsechniJestvujiciHraci.Where(x => x.PocetGolu == maximumGolovDotaz);
+
+                Console.WriteLine("Nejlepsi strelec nebo strelci ligy:");
+                foreach (var t in hraciSMaxGolamiDotaz)
+                {
+                    Console.WriteLine($"Team: " + t.Team);
+                    Console.WriteLine($"      " + (t.Jmeno + " " + t.Prijmeni).PadRight(20) + " Goly: " + t.PocetGolu);
+                }
+
+                // najlepsi strelci po teamoch
+                var maximumGolovTeamDotaz = vsechniJestvujiciHraci.Max(x => x.PocetGolu);
+                var hraciSMaxGolamiTeamDotaz = vsechniJestvujiciHraci.Where(x => x.PocetGolu == maximumGolovDotaz);
+                Console.WriteLine(Environment.NewLine + "Nejlepsi strelec nebo strelci podle teamu:");
+                
+                foreach (Team m in vsechnyJestvujiciTeamy)
+                {
+                    maximumGolovTeamDotaz = vsechniJestvujiciHraci.Where(y=> y.Team == m.Jmeno).Max(x => x.PocetGolu);
+                    hraciSMaxGolamiTeamDotaz = vsechniJestvujiciHraci.Where(y=> y.Team == m.Jmeno && y.PocetGolu == maximumGolovTeamDotaz);
+                    Console.WriteLine($"Team: " + m.Jmeno);
+                   
+                    foreach (var t in hraciSMaxGolamiTeamDotaz)
+                    {
+                        Console.WriteLine($"      " + (t.Jmeno + " " + t.Prijmeni).PadRight(20) + " Goly: " + t.PocetGolu);
+                    }
+                }
+            }
+
             void VyhledejHrace(int podminka)
             {
                 //Console.WriteLine("1 - vsichni hraci");
@@ -316,19 +369,7 @@ namespace Zaverecny_Projekt
 
                 foreach (Hrac hrac in vyberHrace(podminka, kriter))
                 {
-                    Console.WriteLine($"Hrac: " + hrac.Jmeno + " " + hrac.Prijmeni + ", " + hrac.DatumNarozeni.Day + "." + hrac.DatumNarozeni.Month + "." + hrac.DatumNarozeni.Year + ", " + hrac.Team + " - " + hrac.Pozice + ", Pocet strelenych golu: " + hrac.PocetGolu);
-                }
-            }
-
-            void PoradiTeamuDleBodu()
-            {
-                int poradi = 1;
-                Console.WriteLine("Poradi  Nazev teamu  Pocet bodu");
-
-                foreach (Team t in vsechnyJestvujiciTeamy.OrderByDescending(r => r.PocetBodu))
-                {
-                    Console.WriteLine($"{poradi}.misto: {t.Jmeno.PadRight(12)} {t.PocetBodu}");
-                    poradi++;
+                    Console.WriteLine($"Hrac: " + (hrac.Jmeno + " " + hrac.Prijmeni).PadRight(20) +  (hrac.DatumNarozeni.Day + "." + hrac.DatumNarozeni.Month + "." + hrac.DatumNarozeni.Year).PadRight(12) +  hrac.Team.PadRight(12) + hrac.Pozice.PadRight(10) + " Goly: " + hrac.PocetGolu);
                 }
             }
 
@@ -531,7 +572,7 @@ namespace Zaverecny_Projekt
 
             string KontrolaExistencePozice(string pozice)
             {
-                List<string> vsechnyPozice = new List<string> { "brankar", "obrance", "utocnik" }; // hrame maly futbal takze bez zalohy
+                List<string> vsechnyPozice = new List<string> { "Brankar", "Obrance", "Utocnik" }; // hrame maly futbal takze bez zalohy
 
                 string vyslednaPozice = "";
                 foreach (string p in vsechnyPozice)
