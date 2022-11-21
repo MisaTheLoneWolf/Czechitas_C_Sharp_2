@@ -1,0 +1,4 @@
+---------------------------
+21/11/2022 10:30:51
+Attempted to divide by zero.
+   at Zaverecny_Projekt.Program.Main(String[] args) in C:\Users\mkrkosova\Desktop\C# skoleni\Projekt\Czechitas_C_Sharp_2\Zaverecny_Projekt\Zaverecny_Projekt\Program.cs:line 27

@@ -14,35 +14,74 @@ namespace Zaverecny_Projekt
     {
         static void Main(string[] args)
         {
+
+            List<Team> vsechnyJestvujiciTeamy;
+            List<Hrac> vsechniJestvujiciHraci;
+            List<Zapas> vsechnyJestvujicyZapasy;
             // Initioal Load ze souboru pokud jestvuje
             // TEAMY:
-            List<Team> vsechnyJestvujiciTeamy = InitialLoadTeam();
+            vsechnyJestvujiciTeamy = InitialLoadTeam();
 
             // HRACI:
-            List<Hrac> vsechniJestvujiciHraci = InitialLoadHrac();
+            vsechniJestvujiciHraci = InitialLoadHrac();
 
             // Zapasy:
-            List<Zapas> vsechnyJestvujicyZapasy = InitialLoadZapas();
+            vsechnyJestvujicyZapasy = InitialLoadZapas();
 
-            bool promennaProVystupZCyklu = true;
-            bool zobrazPonukuPreUkladanie = false;
+            try // jenom obecny error handling so zapisom do ErrorLog-u
+            { 
+                // fake chyba
+                // int a = 1;
+                // int b = 0;
+                // int c = a/b;
 
-            while (promennaProVystupZCyklu)
+                bool promennaProVystupZCyklu = true;
+                bool zobrazPonukuPreUkladanie = false;
+
+                while (promennaProVystupZCyklu)
+                {
+                    int vybranaVolba = SeznamVsechMoznosti(zobrazPonukuPreUkladanie);
+                    vybranaVolba = SpracovaniVybraneVolby(vybranaVolba);
+
+                    if (vybranaVolba == 1 || vybranaVolba == 2 || vybranaVolba == 9)
+                        zobrazPonukuPreUkladanie = true;
+
+                    if (vybranaVolba == 10)
+                        zobrazPonukuPreUkladanie = false;
+
+                    if (vybranaVolba == 12)
+                    {
+                        Ukonci();
+                        break;
+                    }
+                }
+            }
+            catch (Exception vyjimka)
             {
-                int vybranaVolba = SeznamVsechMoznosti(zobrazPonukuPreUkladanie);
-                vybranaVolba = SpracovaniVybraneVolby(vybranaVolba);
+                string coJduZapsatDoErrorLogu = "---------------------------" 
+                                                + Environment.NewLine + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")
+                                                + Environment.NewLine + vyjimka.Message 
+                                                + Environment.NewLine + vyjimka.StackTrace;
+                ZapisDoErrorLogu(coJduZapsatDoErrorLogu);
+                Console.WriteLine("Nastala chyba, detaily jsou ulozeny do ErrorLogu, ukoncim program");
+                Console.ReadLine();
+            }
+            finally //jeste radeji vse ulozim pokus uzivatel chce
+            {
+                Console.WriteLine("Pokud Chcete ulozit Hrace, Zapasy a Teamy, stisknete a");
+                string vstupUzivatele = kontrolovanyString(Console.ReadLine());
 
-                if (vybranaVolba == 1 || vybranaVolba == 2 || vybranaVolba == 9)
-                    zobrazPonukuPreUkladanie = true;
-
-                if (vybranaVolba == 10)
-                    zobrazPonukuPreUkladanie = false;
-
-                if (vybranaVolba == 12)
-                    break;
+                if (vstupUzivatele == "A")
+                { 
+                    UlozHrace();
+                    UlozZapas();
+                    UlozTeam();
+                    Console.WriteLine("Hraci, Zapasy a Teamy byli ulozeni. Koncim program.");
+                   
+                };
+                Ukonci();
             }
 
-            //Console.ReadLine();
             //METODY
             int SeznamVsechMoznosti(bool jeCoUkladat)
             {
@@ -127,6 +166,9 @@ namespace Zaverecny_Projekt
                         volba = 12;
                         break;
                     case 12:
+                        break;
+                    default:
+                        Console.WriteLine("Volba neexistuje, prosim opakujte se spravne vyplnenou hodnotou 1-12:");
                         break;
                 }
                 return volba;
@@ -286,6 +328,7 @@ namespace Zaverecny_Projekt
                 foreach (Team t in vsechnyJestvujiciTeamy.OrderByDescending(r => r.PocetBodu))
                 {
                     Console.WriteLine($"{poradi}.misto: {t.Jmeno.PadRight(12)} {t.PocetBodu}");
+                    poradi++;
                 }
             }
 
@@ -618,6 +661,22 @@ namespace Zaverecny_Projekt
             long VelkostSouboru(string cestaKSouboru)
             {
                     return new FileInfo(cestaKSouboru).Length;
+            }
+
+            void ZapisDoErrorLogu(string novyZapis)
+            {
+                string cestaKSouboru = cesta("Log", "ErrorLog.xml");
+                StreamWriter writer = new StreamWriter(cestaKSouboru, append: true);
+                writer.WriteLine(novyZapis);
+                writer.Flush();     //v tuto chvili se zapise na disk
+                writer.Close();     //uzavreni souboru
+
+            }
+
+            void Ukonci()
+            {
+                Console.WriteLine("Koncim program, naschledanou!");
+                Console.ReadLine();
             }
         }
     }
