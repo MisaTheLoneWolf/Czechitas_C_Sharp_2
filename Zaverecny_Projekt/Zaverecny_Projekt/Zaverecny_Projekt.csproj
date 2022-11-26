@@ -43,7 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="OperaceHraciATeamy.cs" />
+    <Compile Include="ZadaniZapasu.cs" />
+    <Compile Include="KontrolyVstupov.cs" />
+    <Compile Include="NacteniAZapis.cs" />
+    <Compile Include="Zapas.cs" />
+    <Compile Include="Osoba.cs" />
+    <Compile Include="Team.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
